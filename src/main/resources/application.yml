@@ -1,0 +1,21 @@
+---
+spring:
+  rabbitmq:
+    host: 10.130.202.57
+    port: 5672
+    username: hie_cloud
+    password: hie_cloud123456
+    VirtualHost: tk-hie
+  solr:
+    host: http://127.0.0.1:8080/solr
+    zkHost: 127.0.0.1:8080
+    repositories.enabled: true
+    baseURL: http://127.0.0.1:8080/solr/mynode
+    defaultCollection: mynode
+eureka:
+  instance:
+    preferIpAddress: true
+    statusPageUrlPath: /info.html
+  client:
+    serviceUrl:
+      defaultZone: http://10.130.201.47:8761/eureka/

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/!svn/ver/10461/SourceCode/health/cis/dig/branches/dev/tkh-dig-app/src/main/java/com/taikang/healthcare/cis/dig/service
+END
+UserAppService.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/!svn/ver/9459/SourceCode/health/cis/dig/branches/dev/tkh-dig-app/src/main/java/com/taikang/healthcare/cis/dig/service/UserAppService.java
+END
+DicAppService.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/!svn/ver/10369/SourceCode/health/cis/dig/branches/dev/tkh-dig-app/src/main/java/com/taikang/healthcare/cis/dig/service/DicAppService.java
+END
+DiagnosisAppService.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/!svn/ver/10175/SourceCode/health/cis/dig/branches/dev/tkh-dig-app/src/main/java/com/taikang/healthcare/cis/dig/service/DiagnosisAppService.java
+END
+AliasAppService.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/!svn/ver/10461/SourceCode/health/cis/dig/branches/dev/tkh-dig-app/src/main/java/com/taikang/healthcare/cis/dig/service/AliasAppService.java
+END
+LuceneService.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/!svn/ver/9459/SourceCode/health/cis/dig/branches/dev/tkh-dig-app/src/main/java/com/taikang/healthcare/cis/dig/service/LuceneService.java
+END
+DidicAppService.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/!svn/ver/10400/SourceCode/health/cis/dig/branches/dev/tkh-dig-app/src/main/java/com/taikang/healthcare/cis/dig/service/DidicAppService.java
+END
