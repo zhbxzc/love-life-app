@@ -1,4 +1,4 @@
-package com.love.origami;
+package com.love.life;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
