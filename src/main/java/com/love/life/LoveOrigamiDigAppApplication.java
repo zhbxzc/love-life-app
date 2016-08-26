@@ -16,8 +16,12 @@ import org.springframework.http.converter.support.AllEncompassingFormHttpMessage
 import org.springframework.web.client.RestTemplate;
 
 /**
- * 边缘服务层的启动类
- * @author itw_huomb
+ * 
+* @ClassName: LoveOrigamiDigAppApplication 
+* @Description: 边缘服务层的启动类 
+* @author 张海滨
+* @date 2016年8月26日 上午11:08:12 
+*
  */
 @EnableDiscoveryClient
 @EnableCircuitBreaker
