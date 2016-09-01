@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>客户管理</title>
+		<link href="../hapui/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet" />
+		<link href="customer.css" rel="stylesheet">
+		<link href="../hapui/css/mainStyle.css" rel="stylesheet">
+		<link href="../hapui/css/font-awesome/css/font-awesome.min.css"rel="stylesheet" />
+   	</head>
+	<body ng-controller="customerController" id="moduleId" pagename="../../cust/customer">
+		<div class="wrapper">
+			<p style="font-size:16px;padding: 8px 10px;">客户管理</p>
+			 <form ng-submit="searchcustomer()" id="searchcustomer" class="searchcustomer">
+				<div class="con-nav">
+					<div class="name" style="float:left;margin-left:45px;">名称<input type="text" class="input-medium medium" ng-model="searchForm.name"/></div>
+					<div class="sexID" style="float:left;margin-left:100px;">性别<select ng-model="searchForm.sexId" class="selectsi medium" >
+								<option value="1" selected="selected" >未知性别</option>
+								<option value="4052" >男</option>
+								<option value="4053" >女</option>
+							</select>
+						
+					</div>
+					<div class="idCardNo" style="float: left;margin-left:100px;">身份证号<input type="text" class="input-medium medium" ng-model="searchForm.idCardNo"/></div>
+					<button type="submit" class="button">查询</button>
+					<div style="clear: both;"></div>
+				</div>
+			</form>
+									
+			<div class="info">
+				<div class="confirm">
+				<div style="clear: both;"></div>
+				<!--新增的弹出窗口-->
+	  
+	   <button class="btn save" type="button" data-toggle="modal" data-target="#add_customer" value="新增">新增</button>
+		<div class="modal fade" id="add_customer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-header wrap">
+					<h5 class="modal-title" id="myModalLabel">新增</h5>
+				</div>
+					<div class="modal-content wrap">
+					<form id="addCustomer" class="form-horizontal">
+					<input type="hidden" ng-model="addForm.id" id="alter_id" >
+						<table id="addCustomerTable">
+							<tr>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>名称</label>
+								</td>
+								<td>
+									<input id="alter_name" type="text" ng-model="addForm.name" placeholder="请输入中文名称" class="input-medium">
+								</td>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>性别编码</label>
+								</td>
+								<td>
+									<input type="text" ng-model="addForm.sexId" placeholder="请输入性别编码" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label">身份证号</label>
+								</td>
+								<td>
+									<input type="text" ng-model="addForm.idCardNo" placeholder="请输入身份证号" class="input-medium">
+								</td>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>邮箱</label>
+								</td>
+								<td>
+									<input type="text" ng-model="addForm.email" placeholder="" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>手机号码</label>
+								</td>
+								<td>
+									<input type="text" ng-model="addForm.mobile" placeholder="" class="input-medium">
+								</td>
+									<td>
+									<label class="control-label"><b style="color: red;">*</b>固定电话</label>
+								</td>
+								<td>
+									<input type="text" ng-model="addForm.tel" placeholder="" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>出生日期</label>
+								</td>
+								<td>
+									<input type="date" ng-model="addForm.birthday" placeholder="" class="input-medium" value="2016-08-31"/>
+								</td>
+									<td>
+									<label class="control-label"><b style="color: red;">*</b>民族</label>
+								</td>
+								<td>
+									<input type="text" ng-model="addForm.nationId" placeholder="" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label">描述</label>
+								</td>
+								<td>
+									<textarea ng-model="addForm.des" class="input-medium" style="height:47px;"></textarea>
+								</td>
+								<!-- <td>
+									<label class="control-label" >传染病标志</label>
+								</td>
+								<td style="padding-top: 15px;">
+									<select ng-model="alterForm.infectiousFlag" class="selectif" >
+										<option value="" >未知</option>
+										<option value="true" >是</option>
+										<option value="false" >否</option>
+									</select>
+								</td> -->
+							</tr>
+						</table>
+
+					</form>
+				</div>
+				<!-- /.modal-content -->
+				<div class="modal-footer wrap" style="padding: 10px;">
+					<button type="button" class="btn btn-primary" ng-click="addCustomer()">确认</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+			<!-- /.modal -->
+		</div>
+		<div class="modal fade" id="edit_customer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-header wrap">
+					<h5 class="modal-title" id="myModalLabel">修改</h5>
+				</div>
+				<div class="modal-content wrap">
+					<form id="editCustomer" class="form-horizontal">
+					<input type="hidden" ng-model="alterForm.id" id="alter_id" >
+						<table id="editCustomerTable">
+							<tr>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>名称</label>
+								</td>
+								<td>
+									<input id="alter_name" type="text" ng-model="alterForm.name" placeholder="请输入中文名称" class="input-medium">
+								</td>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>性别编码</label>
+								</td>
+								<td>
+									<input type="text" ng-model="alterForm.sexId" placeholder="请输入性别编码" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label">身份证号</label>
+								</td>
+								<td>
+									<input type="text" ng-model="alterForm.idCardNo" placeholder="请输入身份证号" class="input-medium">
+								</td>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>邮箱</label>
+								</td>
+								<td>
+									<input type="text" ng-model="alterForm.email" placeholder="" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>手机号码</label>
+								</td>
+								<td>
+									<input type="text" ng-model="alterForm.mobile" placeholder="" class="input-medium">
+								</td>
+									<td>
+									<label class="control-label"><b style="color: red;">*</b>固定电话</label>
+								</td>
+								<td>
+									<input type="text" ng-model="alterForm.tel" placeholder="" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label"><b style="color: red;">*</b>出生日期</label>
+								</td>
+								<td>
+									<input type="date" ng-model="alterForm.birthday" placeholder="" class="input-medium">
+								</td>
+									<td>
+									<label class="control-label"><b style="color: red;">*</b>民族</label>
+								</td>
+								<td>
+									<input type="text" ng-model="alterForm.nationId" placeholder="" class="input-medium">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label class="control-label">描述</label>
+								</td>
+								<td>
+									<textarea ng-model="alterForm.des" class="input-medium" style="height:47px;"></textarea>
+								</td>
+								<!-- <td>
+									<label class="control-label" >传染病标志</label>
+								</td>
+								<td style="padding-top: 15px;">
+									<select ng-model="alterForm.infectiousFlag" class="selectif" >
+										<option value="" >未知</option>
+										<option value="true" >是</option>
+										<option value="false" >否</option>
+									</select>
+								</td> -->
+							</tr>
+						</table>
+
+					</form>
+				</div>
+				<!-- /.modal-content -->
+				<div class="modal-footer wrap" style="padding: 10px;">
+					<button type="button" class="btn btn-primary" ng-click="Edit()">确认</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+			<!-- /.modal -->
+		</div>
+	<!--删除的弹出窗口-->
+	
+	<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" style="margin: 0 auto;padding: 0px 19px 15px;">
+		<div class="modal-dialog">
+				<div class="modal-header" style="width:410px;">
+					<h5 class="modal-title" id="myModalLabel">删除</h5>
+				</div>
+				 <div id="remove" class="form-horizontal">
+                     <p style="text-align: center;margin: 94px;"><img src="../hapui/img/delete.jpg">确认删除所选内容？</p>
+                 </div>
+		 
+		  <div class="modal-footer" style="padding:10px;width:410px;margin-top:-44px;">
+			<button type="button" class="btn btn-primary" ng-click="Remove()">确认</button>  		         	  	          						 
+			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		</div>
+		 </div>
+		 
+		
+	</div>
+	<!--表格-->
+			<div class="container">
+				 <table st-table="displayed" class="table table-striped">
+					<thead>
+						<tr>
+							<th st-ratio="10" st-sort="id">序号</th>
+							<th st-ratio="10" st-sort="name">名称</th>
+							<th st-sort="sexId" style="display:none">性别编码</th>
+							<th st-ratio="10" st-sort="sexName">性别</th>
+							<th st-ratio="20" st-sort="idCardNo">身份证号</th>
+							<th st-ratio="30" st-sort="des">描述</th>
+							<th st-ratio="30" st-sort="email">邮箱</th>
+							<th st-ratio="20" st-sort="mobile">手机号码</th>
+							<th st-ratio="10" st-sort="tel">固定电话</th>
+							<th st-ratio="10" st-sort="birthday">出生日期</th>
+							<th st-sort="nationId" style="display:none">民族编码</th>
+							<th st-ratio="30" st-sort="nationName">民族</th>
+							<th st-ratio="20" st-sort="operation">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="row in attributes">
+								<td st-ratio="10">{{row.id}}</td>
+								<td st-ratio="10" title="{{row.name}}">{{row.name}}</td>
+								<td style="display:none">{{row.sexId}}</td>
+								<td st-ratio="10">{{row.sexId}}</td>
+								<td st-ratio="20">{{row.idCardNo}}</td>
+								<td st-ratio="30"  title="{{row.des}}">{{row.des}}</td>
+								<td st-ratio="30">{{row.email}}</td>
+								<td st-ratio="20">{{row.mobile}}</td>
+								<td st-ratio="10">{{row.tel}}</td>
+								<td st-ratio="30">{{row.birthday}}</td>
+								<td  title="{{row.nationId}}" style="display:none">{{row.nationId}}</td>
+								<td st-ratio="20"  title="{{row.nationId}}">{{row.nationId}}</td>
+								<td st-ratio="20" class="action-column">
+									<button type="button" class="btn-info btn-sm" data-toggle="modal" data-target="#edit_customer" ng-click="setValue1(row)">编辑</button>
+									<button type="button" class="btn-info btn-sm" data-toggle="modal" data-target="#delete" ng-click="setValue2(row)">删除</button>
+								</td>
+						</tr>
+					</tbody>
+					<tfoot ng-hide="numberOfPages==1">
+						<tr>
+						<td colspan="11">
+								<pagination-smart-table num-pages="numberOfPages" current-page="currentPage" max-size="maxSize"></pagination-smart-table>
+							</td>
+						</tr>
+					<!-- <tr>
+						<td colspan="5" class="text-center">
+							<div st-items-by-page="10" st-pagination="" st-template="pagination.custom.html"></div>
+						</td>
+					</tr> -->
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include="'../hapui/compage/tipmodal.html'"></div>
+<script async="async" defer="defer" src="../hapui/plugins/requireJs/require.js" data-main="../hapui/js/main.js"></script>
+</body>	
+</html>

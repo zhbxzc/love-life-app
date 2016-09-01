@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * 
-* @ClassName: LoveOrigamiDigAppApplication 
+* @ClassName: LoveOrigamiAppApplication 
 * @Description: 边缘服务层的启动类 
 * @author 张海滨
 * @date 2016年8月26日 上午11:08:12 
@@ -26,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 @SpringBootApplication
-public class LoveOrigamiDigAppApplication
+public class LoveOrigamiAppApplication
 {
 	/*@Bean
 	Sampler sampler()
@@ -46,6 +46,6 @@ public class LoveOrigamiDigAppApplication
 	}
 	public static void main(String[] args)
 	{
-		SpringApplication.run(LoveOrigamiDigAppApplication.class, args);
+		SpringApplication.run(LoveOrigamiAppApplication.class, args);
 	}
 }

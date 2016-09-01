@@ -24,7 +24,7 @@ public class CommController extends BaseController{
 	* @return CommonResponse    返回类型 
 	* @throws
 	 */
-	@RequestMapping(value = "/origami/oriinns/pyjm/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/love/life/pyjm/{name}", method = RequestMethod.GET)
 	public CommonResponse ConvertPy(@PathVariable String name){
 		return successReturn(CommService.convertPy(name));
 	}

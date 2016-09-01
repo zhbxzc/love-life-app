@@ -2,8 +2,8 @@ server:
   port: 8015
 spring:
   application:
-    name: tkh-dig-app
+    name: love-life-app
     
 #应用层调用的服务地址
 service:
-  path: tkh-dig-domain
+  path: love-origami-domain
