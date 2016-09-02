@@ -6,7 +6,7 @@ public class Constants {
 	private static String origamiPath="love-origami-domain";
 	private static String custPath="cloud-cust-domain";
 	   //折纸信息新增
-		public static final String registerOrigami="http://"+origamiPath+"/origami/oriinns";
+		public static final String registerOrigami="http://"+origamiPath+"/Paperinnovatedomain/origami/oriinns";
 		//折纸信息删除
 		public static final String deleteOrigami="http://"+origamiPath+"/digdomain/dig/didics";
 		//折纸信息查询

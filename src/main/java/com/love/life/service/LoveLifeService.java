@@ -35,10 +35,12 @@ public class LoveLifeService {
 	* @return String    返回类型 
 	* @throws
 	 */
-	@HystrixCommand(fallbackMethod = "hystrixMapParam")
+	/*@HystrixCommand(fallbackMethod = "hystrixMapParam")*/
 	public String register(String origamiinnoInfo)
 	{
-		ResponseEntity<String> response = client.postForEntity(Constants.registerOrigami,origamiinnoInfo, String.class);
+		
+		String url = Constants.registerOrigami;
+		ResponseEntity<String> response = client.postForEntity(url,origamiinnoInfo, String.class);
 		return response.getBody();
 	}
 	
