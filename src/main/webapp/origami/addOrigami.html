@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body ng-controller="addOrigamiController" id="moduleId" pagename="../../origami/addOrigami">
+<div align="center">
+    <h1>折纸制作步骤</h1>
+     <form ng-submit="addOrigami()" id="addOrigami" class="addOrigami">
+     <div class="title" style="float:left;margin-left:45px;">标题<input type="text" class="input-medium medium" ng-model="addForm.title"/></div>
+    	<div class="typeID" style="float:left;margin-left:100px;">类别<select ng-model="aaForm.typeId" class="selectsi medium" >
+								<option value="1" selected="selected" >A类</option>
+								<option value="2" >B类</option>
+								<option value="3" >C类</option>
+							</select>
+						
+					</div>
+    <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+    </form>
+</div>
+<div ng-include="'../hapui/compage/tipmodal.html'"></div>
+<script async="async" src="../hapui/plugins/requireJs/require.js" data-main="../hapui/js/main.js"></script>
+</body>
+</html>

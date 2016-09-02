@@ -9,6 +9,8 @@ require.config({　
 		angularroute:"angular/angular-route.min",
 		angularUIroute:"angular/angular-ui-router",
 		smarttable:"smarttable/Smart-Table.debug",
+		ueditorconfig:"ueditor-1.4.3.3/ueditor.config",
+		ueditorparse:"ueditor-1.4.3.3/ueditor.parse",
 		_page:_page,
 		interfaces:"../js/interface/interfacesConfig"
 	},
@@ -18,10 +20,10 @@ require.config({　
 		'angularroute' : {deps : ['angular']},
 		'angularUIroute':{deps : ['angular']},
 		'smarttable' : {deps : ['angular']},
-		'_page':{deps : ['angular','smarttable','interfaces']}
+		'_page':{deps : ['angular','smarttable','interfaces','ueditorconfig','ueditorparse']}
 	}
 });
-require(['angular','jquery','bootstrap','angularroute','angularUIroute','smarttable','interfaces','_page'], function(angular) {　
+require(['angular','jquery','bootstrap','angularroute','angularUIroute','smarttable','interfaces','ueditorconfig','ueditorparse','_page'], function(angular) {　
 	angular.element(document).ready(function(){
 		angular.bootstrap(document,["myApp"]);
 	});
