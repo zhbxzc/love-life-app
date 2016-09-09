@@ -2,7 +2,7 @@ package com.love.life.bean;
 
 import java.util.Date;
 
-public class customer extends PageBean{
+public class Customer extends PageBean{
     private String id;
 
     private Integer typeId;

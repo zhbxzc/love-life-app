@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 import com.love.life.bean.PageBean;
 import com.love.life.bean.Paperinnovate;
-import com.love.life.bean.customer;
+import com.love.life.bean.Customer;
 import com.love.life.common.BaseController;
 import com.love.life.common.CommonResponse;
 import com.love.life.common.ConsantsCodeAndMessage;

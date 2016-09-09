@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.love.life.bean.Paperinnovate;
-import com.love.life.bean.customer;
+import com.love.life.bean.Customer;
 import com.love.life.common.Constants;
 import com.love.life.common.HanToWB;
 import com.love.life.common.Pyjc;
@@ -27,93 +27,118 @@ public class LoveCustService {
 	@Autowired
 	RestTemplate client;
 	
+	/**
+	 * 注册
+	 * FIXME 
+	 * @param 信息的JSON串
+	 * @return 注册
+	 */
+	@HystrixCommand(fallbackMethod = "hystrixMapParam")
+	public String register(String Info)
+	{
+		ResponseEntity<String> response = client.postForEntity(Constants.registerCust,Info, String.class);
+		return response.getBody();
+	}
 	
+	public String hystrixMapParam(String Info)
+	{
+		return "{\"result\":\"false\",\"mesg\":\"调用失败\"}";
+	}
+	
+	/**
+	 * 
+	 * FIXME 
+	 * @param Id
+	 * @return
+	 * @author
+	 */
+    @HystrixCommand(fallbackMethod = "deletehystrixMapParam")
+	public String delete(String Id)
+	{   
+		ResponseEntity<String> response=null;
+	    response = client.exchange(Constants.deleteCust+"/"+Id, HttpMethod.DELETE, null, String.class);
+		return response.getBody().toString();
+	}
+	
+	public String deletehystrixMapParam(String Id)
+	{
+		return "{\"result\":\"false\",\"mesg\":\"删除失败\"}";
+	}
 	
 	//HystrixCommandProperties
-/**
- * 
-* @Title: search 
-* @Description: 查询客户信息
-* @param @return    设定文件 
-* @return String    返回类型 
-* @throws
- */
+	/**
+	 * 根据查询条件获取信息
+	 * @param 
+	 * @return
+	 * 
+	 */
 	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")
-	public String search(customer customer) {	
+	public String search(Customer customer) {
 		String s = client.getForObject(Constants.searchCust+toURL(customer), String.class);
 		return  s;
 	}
 	
 	/**
-	 * 
-	* @Title: searchCount customer
-	* @Description: 查询客户记录条数
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws
+	 * 根据查询条件获取信息记录数
+	 * @param 
+	 * @return
 	 */
 	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")
-	public String searchCount(customer customer) {
+	public String searchCount(Customer customer) {
 		String s = client.getForObject(Constants.searchCountCust+toURL(customer), String.class);
 		return  s;
 	}
 	
-	public String searchhystrixMapParam(customer customer)
+	public String searchhystrixMapParam(Customer customer)
 	{
 		return "{\"result\":\"false\",\"mesg\":\"查询失败\"}";
 	}
-	public static String toURL(customer customer){
-    	String url="?";
-    	if(customer.getName()!=null){
-    		url+="&name="+customer.getName();
-    	}
-    	if(customer.getIdCardNo()!=null){
-    		url+="&idCardNo="+customer.getIdCardNo();
-    	}
-    	if(customer.getSexId()!=null){
-    		url+="&sexId="+customer.getSexId();
-    	}
-    	if(customer.getPageIndex()!=null){
-    		url+="&pageIndex="+customer.getPageIndex();
-    	}
-    	if(customer.getPageSize()!=null){
-    		url+="&pageSize="+customer.getPageSize();
-    	}
-    	if(url.equals("?")){
-    		url="";
-    	}
-    	return url;
-    }	
-    @HystrixCommand(fallbackMethod = "deletehystrixMapParam")
-	public String delete(String id)
-	{   
-		ResponseEntity<String> response=null;
-	    response = client.exchange(Constants.deleteCust+"/"+id, HttpMethod.DELETE, null, String.class);
-		return response.getBody().toString();
-	}
 	
-	public String deletehystrixMapParam(String icdId)
-	{
-		return "{\"result\":\"false\",\"mesg\":\"删除失败\"}";
-	}
-	
-	/*@HystrixCommand(fallbackMethod = "hystrixMapParam")*/
-	public String alter(String customerInfo){
-		customer customer=JSON.parseObject(customerInfo, customer.class);
-		RequestEntity<Object> request = new RequestEntity<Object>(customerInfo,HttpMethod.PUT,
+	/**
+	 * FIXME 修改信息 
+	 * @param Info
+	 * @return 
+	 */
+	@HystrixCommand(fallbackMethod = "hystrixMapParam")
+	public String alter(String Info){
+		Customer customer=JSON.parseObject(Info, Customer.class);
+		RequestEntity<Object> request = new RequestEntity<Object>(Info,HttpMethod.PUT,
 				URI.create(Constants.alterCust+"/"+customer.getId()));
 		ResponseEntity<String> response = client.exchange(request, String.class);
 		return response.getBody();
 	}
-/*	@HystrixCommand(fallbackMethod = "hystrixMapParam")*/
-	public String register(String customer)
-	{
-		ResponseEntity<String> response = client.postForEntity(Constants.registerCust,customer, String.class);
+	
+	/**
+	 * 根据ID获取一个信息
+	 * @param id
+	 * @return 
+	 */
+	@HystrixCommand(fallbackMethod = "getByIdhystrixMapParam")
+	public String getById(String id) {
+		ResponseEntity<String> response = client.getForEntity(Constants.searchCust+"/"+id,String.class);
 		return response.getBody();
 	}
-	
-	public String hystrixMapParam(String customer)
+
+	public String getByIdhystrixMapParam(String id)
 	{
-		return "{\"result\":\"false\",\"mesg\":\"调用失败\"}";
+		return "{\"result\":\"false\",\"mesg\":\"查询失败\"}";
 	}
+	
+	
+	 public static String toURL(Customer customer){
+	    	String url="?";
+	    	if(customer.getName()!=null){
+	    		url+="&name="+customer.getName();
+	    	}	    
+	    	if(customer.getPageIndex()!=null){
+	    		url+="&pageIndex="+customer.getPageIndex();
+	    	}
+	    	if(customer.getPageSize()!=null){
+	    		url+="&pageSize="+customer.getPageSize();
+	    	}
+	    	if(url.equals("?")){
+	    		url="";
+	    	}
+	    	return url;
+	    }
 }

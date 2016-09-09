@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>客户管理</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="searchcust.css" />
+</head>
+<body id="moduleId" pagename="customer/searchcust">
+	<nav class="nav navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<ol class="breadcrumb">
+					<li>客户管理</li>
+				</ol>
+			</div>
+		</div>
+	</nav>
+	<hr />
+	<div class="container-fluid">
+		<div class="row" style="margin: 0 auto;">
+			<form class="form-inline" id="searchcustForm">
+				<table>
+					<tr>
+						<td>客户ID:</td>
+						<td><input id="id" type="text" class="form-control"
+							placeholder="请输入客户ID" /></td>
+						<td>姓 名:</td>
+						<td><input id="name" type="text" class="form-control"
+							placeholder="请输入姓名" /></td>
+						<td>出生日期:</td>
+						<td><input id="birthday" type="text"
+							onFocus="WdatePicker({lang:'zh-cn'})" class="form-control"
+							placeholder="例：1991-01-01" /></td>
+						<td>电子邮箱:</td>
+						<td><input id="email" class="email form-control" type="email"
+							placeholder="例：aaa@bb.com" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>身份证号:</td>
+						<td><input id="idCardNo" type="text"
+							class="idCardNo form-control" placeholder="15位或18位身份证号" /></td>
+						<td>注册机构ID:</td>
+						<td><input id="registOrgId" type="text" class="form-control"
+							placeholder="请输入注册机构ID" /></td>
+						<td></td>
+						<td><input type="submit" class="submit search-button"
+							value="查询" /></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+
+			</form>
+			<hr />
+			<div style="text-align: left;">
+				<input type="button" class="block-button" data-toggle="modal"
+					data-target="#registerCust" value="新增客户" onclick="clearModal()" />
+			</div>
+			<div class="row " style="margin-top: 10px;">
+				<div class="col-lg-12">
+					<table id="searchcust" class="table">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="registerCust" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="myModalLabel">新增客户</h5>
+				</div>
+				<div class="">
+					<form id="registercustform" class="form-horizontal"
+						autocomplete="on">
+						<table class="table-bordered" id="registertable" >
+							<tbody>
+								<tr>
+								   <input type="hidden" name="photo" id="photo"/>
+									<td class="odd"><b style="color: red;">*</b>姓名:</td>
+									<td class="even"><input type="text" name="name" class="form-control"
+										placeholder="请输入姓名" autofocus="autofocus" required="required" /></td>
+									<td class="odd"><b style="color: red;">*</b>性别:</td>
+									<td class="even"><SELECT NAME="sexId" id="sexId" SIZE="1"
+										class="form-control" style="width: 100%;" required="required"
+										datasource="xxx_sexid" dropdown>
+									</SELECT></td>
+									<td align="center" rowspan="8" style="width:203px;" > 
+									    <button type="button" class="imageloadtest" onclick="$('input[id=lefile]').click();">选择您要上传的头像</button>
+										<div id="tip" style="height: 20px;margin-left: 6px;font-size:13px;">仅支持JPG、GIF、PNG、BMP</div>
+		                                <div style="height: 20px;margin-left: 6px;font-size:13px;">、JPEG格式，文件小于4M</div>
+										<div class="photo1" id="imgdiv">
+											<img  src="" width="120px" height="150px" class="" id="pho"></img>
+										</div>
+										<input id="lefile" type="file" onchange="setImg(this)" style="display:none">										
+									</td>
+								</tr>
+								<tr>
+									<td class="odd"><b style="color: red;">*</b>身份证号:</td>
+									<td class="even"><input name="idCardNo" type="idCard|idCrad1"
+										class="form-control" maxlength="18" placeholder="15位或18位身份证号"
+										required="required"></td>
+									<td class="odd"><b style="color: red;">*</b>出生日期:</td>
+									<td class="even"><input name="birthday" class="form-control"
+										type="text" onFocus="WdatePicker({lang:'zh-cn'})"
+										value="2016-03-13" style="width: 100%;" required="required" /></td>
+								</tr>
+								<tr>
+									<td class="odd">电子邮箱:</td>
+									<td class="even"><input name="email" type="email" class="form-control"
+										placeholder="例：aaa@bb.com" /></td>
+									<td class="odd">国家:</td>
+									<td class="even"><SELECT NAME="countryId" id="countryId" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_countryid" dropdown>
+									</SELECT></td>
+								</tr>
+								<tr>
+									<td class="odd"><b style="color: red;">*</b>移动电话:</td>
+									<td class="even"><input type="tel" class="form-control" name="mobile"
+										maxlength="11" placeholder="请输入11位手机号" required="required" /></td>
+									<td class="odd">民族:</td>
+									<td class="even"><SELECT NAME="nationId" id="nationId" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_nationid" dropdown>
+									</SELECT></td>
+								</tr>
+								<tr>
+									<td class="odd">固定电话:</td>
+									<td class="even"><input type="text" name="tel" class="form-control"
+										placeholder="请输入固定电话" /></td>
+									<td class="odd">语种:</td>
+									<td class="even"><SELECT NAME="languageId" id="languageId" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_languageid" dropdown>
+									</SELECT></td>
+								</tr>
+								<tr>
+									<td class="odd">工作单位:</td>
+									<td class="even"><input type="text" name="orgName" class="form-control"
+										placeholder="请输入工作单位" /></td>
+									<td class="odd">政治面貌:</td>
+									<td class="even"><SELECT NAME="politicsId" id="politicsId" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_politicsid" dropdown>
+									</SELECT></td>
+								</tr>
+								<tr>
+								    <td class="odd">学历:</td>
+									<td class="even"><SELECT NAME="educationId" id="educationId" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_educationid" dropdown>
+									</SELECT></td>
+									<td class="odd">职业:</td>
+									<td class="even"><SELECT NAME="occupationId" id="occupationId" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_occupationid" dropdown>
+									</SELECT></td>
+									</tr>
+									<tr>
+									<td class="odd">学位:</td>
+									<td class="even"><SELECT NAME="degreeId" id="degreeId" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_degreeid" dropdown>
+									</SELECT></td>
+									<td class="odd">婚姻状况:</td>
+									<td class="even"><SELECT NAME="marriedFlag" id="marriedFlag" SIZE="1"
+										class="form-control" style="width: 100%;"
+										datasource="xxx_marriedflag" dropdown>
+									</SELECT></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="modal-footer">
+							<input type="checkbox" id="addAnother" /> <label
+								for="addAnother">继续新增</label>
+							<button type="submit" class="btn btn-primary">确认</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">取消</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<div id="links"></div>
+</body>
+<script type="text/javascript"
+	src="../static/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="../static/public/artSeaConfig.js"></script>
+</html>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 import com.love.life.bean.PageBean;
 import com.love.life.bean.Paperinnovate;
-import com.love.life.bean.customer;
+import com.love.life.bean.Customer;
 import com.love.life.common.BaseController;
 import com.love.life.common.CommonResponse;
 import com.love.life.common.ConsantsCodeAndMessage;
@@ -22,29 +22,30 @@ import com.love.life.service.LoveLifeService;
 
 
 @RestController
-@RequestMapping("/customerapp")
+@RequestMapping("/custapp")
 public class LoveCustController  extends BaseController{
 	@Resource
 	private LoveCustService loveCustService;
 			
 	/**
-	 * 
-	* @Title: search 
-	* @Description: 根据条件查询客户信息
-	* @param @param paperinnovate
-	* @param @return    设定文件 
-	* @return CommonResponse    返回类型 
-	* @throws
+	 * 注册
+	 * FIXME 
+	 * @param 信息的JSON串
+	 * @return 注册结果
+	 */
+	@RequestMapping(value = "/customers", method = RequestMethod.POST)
+	public CommonResponse register(@RequestBody String Info){
+		return successReturn(loveCustService.register(Info));
+	}
+	
+	
+	/**
+	 * 根据查询条件获取信息
+	 * @return 信息集合
+     * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "/customers", method = RequestMethod.GET)
-	public CommonResponse search(customer customer){
-		if (customer.getPageIndex()==null) {
-			customer.setPageIndex(1);
-		}
-		if (customer.getPageSize()==null) {
-			customer.setPageSize(10);
-		}
-		
+	public CommonResponse search(Customer customer){
 		String res = loveCustService.search(customer);
 		String count=loveCustService.searchCount(customer);
 		PageBean<String> pagebean=new PageBean<String>();
@@ -61,16 +62,34 @@ public class LoveCustController  extends BaseController{
 			return successReturn(JSON.toJSONString(pagebean));
 		}
 	}
+	
+	/**
+	 * 根据ID获取一个信息
+	 * @param id
+	 * @return 
+	 */
+	@RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
+	public CommonResponse getById(@PathVariable String id ){
+		return successReturn(loveCustService.getById(id));
+	}
+	
+	/**
+	 * 根据ID删除一个信息
+	 * @param id
+	 * @return 
+	 */
 	@RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
 	public CommonResponse delete(@PathVariable String id ){
 		return successReturn(loveCustService.delete(id));
-	}	
-	@RequestMapping(value = "/customers/{id}", method = RequestMethod.PUT)
-	public CommonResponse<?> alter(@RequestBody String customer){
-		return successReturn(loveCustService.alter(customer));
 	}
-	@RequestMapping(value = "/customers", method = RequestMethod.POST)
-	public CommonResponse register(@RequestBody String customer){
-		return successReturn(loveCustService.register(customer));
+	
+	/**
+	 * FIXME 修改信息 
+	 * @param Info
+	 * @return 
+	 */
+	@RequestMapping(value = "/customers/{id}", method = RequestMethod.PUT)
+	public CommonResponse<?> alter(@RequestBody String Info){
+		return successReturn(loveCustService.alter(Info));
 	}
 }

@@ -35,7 +35,7 @@ public class LoveLifeService {
 	* @return String    返回类型 
 	* @throws
 	 */
-	/*@HystrixCommand(fallbackMethod = "hystrixMapParam")*/
+	@HystrixCommand(fallbackMethod = "hystrixMapParam")
 	public String register(String origamiinnoInfo)
 	{
 		
