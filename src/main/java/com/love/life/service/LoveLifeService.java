@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.love.life.bean.Customer;
 import com.love.life.bean.Paperinnovate;
 import com.love.life.common.Constants;
 import com.love.life.common.HanToWB;
@@ -27,108 +28,64 @@ public class LoveLifeService {
 	RestTemplate client;
 	
 	/**
-	 * 
-	* @Title: register 
-	* @Description: 新增折纸信息 
-	* @param @param origamiinnoInfo
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws
+	 * 注册
+	 * FIXME 
+	 * @param 信息的JSON串
+	 * @return 注册
 	 */
 	@HystrixCommand(fallbackMethod = "hystrixMapParam")
-	public String register(String origamiinnoInfo)
+	public String register(String Info)
 	{
-		
-		String url = Constants.registerOrigami;
-		ResponseEntity<String> response = client.postForEntity(url,origamiinnoInfo, String.class);
+		ResponseEntity<String> response = client.postForEntity(Constants.registerOrigami,Info, String.class);
 		return response.getBody();
 	}
 	
-	public String hystrixMapParam(String origamiinnoInfo)
+	public String hystrixMapParam(String Info)
 	{
 		return "{\"result\":\"false\",\"mesg\":\"调用失败\"}";
 	}
 	
 	/**
 	 * 
-	* @Title: delete 
-	* @Description: 删除折纸信息 
-	* @param @param origamiId
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws
+	 * FIXME 
+	 * @param Id
+	 * @return
+	 * @author
 	 */
     @HystrixCommand(fallbackMethod = "deletehystrixMapParam")
-	public String delete(String origamiId)
+	public String delete(String Id)
 	{   
 		ResponseEntity<String> response=null;
-	    response = client.exchange(Constants.deleteOrigami+"/"+origamiId, HttpMethod.DELETE, null, String.class);
+	    response = client.exchange(Constants.deleteOrigami+"/"+Id, HttpMethod.DELETE, null, String.class);
 		return response.getBody().toString();
 	}
 	
-	public String deletehystrixMapParam(String icdId)
+	public String deletehystrixMapParam(String Id)
 	{
 		return "{\"result\":\"false\",\"mesg\":\"删除失败\"}";
 	}
 	
 	//HystrixCommandProperties
 	/**
-	 * 根据查询条件获取诊断字典信息
-	 * @param didic
+	 * 根据查询条件获取信息
+	 * @param 
 	 * @return
-	 * itw_liyang05
+	 * 
 	 */
 	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")
 	public String search(Paperinnovate paperinnovate) {
-		String url="?";
-    	if(paperinnovate.getId()!=null){
-    		url+="&id="+paperinnovate.getId();
-    	}
-    	if(paperinnovate.getTitle()!=null){
-    		url+="&title="+paperinnovate.getTitle();
-    	}   
-    	if(paperinnovate.getPageIndex()!=null){
-    		url+="&pageIndex="+paperinnovate.getPageIndex();
-    	}
-    	if(paperinnovate.getPageSize()!=null){
-    		url+="&pageSize="+paperinnovate.getPageSize();
-    	}
-    	if(url.equals("?")){
-    		url="";
-    	}
-		
-		String s = client.getForObject(Constants.searchOrigami+url, String.class);
+		String s = client.getForObject(Constants.searchOrigami+toURL(paperinnovate), String.class);
 		return  s;
 	}
 	
 	/**
-	 * 
-	* @Title: searchCount 
-	* @Description: 查询记录条数 
-	* @param @param paperinnovate
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws
+	 * 根据查询条件获取信息记录数
+	 * @param 
+	 * @return
 	 */
 	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")
 	public String searchCount(Paperinnovate paperinnovate) {
-		String url="?";
-    	if(paperinnovate.getId()!=null){
-    		url+="&id="+paperinnovate.getId();
-    	}
-    	if(paperinnovate.getTitle()!=null){
-    		url+="&title="+paperinnovate.getTitle();
-    	}   
-    	if(paperinnovate.getPageIndex()!=null){
-    		url+="&pageIndex="+paperinnovate.getPageIndex();
-    	}
-    	if(paperinnovate.getPageSize()!=null){
-    		url+="&pageSize="+paperinnovate.getPageSize();
-    	}
-    	if(url.equals("?")){
-    		url="";
-    	}
-		String s = client.getForObject(Constants.searchOrigami+url, String.class);
+		String s = client.getForObject(Constants.searchCountOrigami+toURL(paperinnovate), String.class);
 		return  s;
 	}
 	
@@ -138,35 +95,27 @@ public class LoveLifeService {
 	}
 	
 	/**
-	 * 
-	* @Title: alter 
-	* @Description: 修改信息
-	* @param @param paperinnovateInfo
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws
+	 * FIXME 修改信息 
+	 * @param Info
+	 * @return 
 	 */
 	@HystrixCommand(fallbackMethod = "hystrixMapParam")
-	public String alter(String paperinnovateInfo){
-		Paperinnovate paperinnovate=JSON.parseObject(paperinnovateInfo, Paperinnovate.class);
-		RequestEntity<Object> request = new RequestEntity<Object>(paperinnovateInfo,HttpMethod.PUT,
+	public String alter(String Info){
+		Paperinnovate paperinnovate=JSON.parseObject(Info, Paperinnovate.class);
+		RequestEntity<Object> request = new RequestEntity<Object>(Info,HttpMethod.PUT,
 				URI.create(Constants.alterOrigami+"/"+paperinnovate.getId()));
 		ResponseEntity<String> response = client.exchange(request, String.class);
 		return response.getBody();
 	}
 	
 	/**
-	 * 
-	* @Title: getById 
-	* @Description: 根据Id查询信息
-	* @param @param id
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws
+	 * 根据ID获取一个信息
+	 * @param id
+	 * @return 
 	 */
 	@HystrixCommand(fallbackMethod = "getByIdhystrixMapParam")
 	public String getById(String id) {
-		ResponseEntity<String> response = client.getForEntity(Constants.getByIdOrigami+"/"+id,String.class);
+		ResponseEntity<String> response = client.getForEntity(Constants.searchOrigami+"/"+id,String.class);
 		return response.getBody();
 	}
 
@@ -174,6 +123,22 @@ public class LoveLifeService {
 	{
 		return "{\"result\":\"false\",\"mesg\":\"查询失败\"}";
 	}
-
 	
+	
+	 public static String toURL(Paperinnovate paperinnovate){
+	    	String url="?";
+	    	if(paperinnovate.getTitle()!=null){
+	    		url+="&name="+paperinnovate.getTitle();
+	    	}	    
+	    	if(paperinnovate.getPageIndex()!=null){
+	    		url+="&pageIndex="+paperinnovate.getPageIndex();
+	    	}
+	    	if(paperinnovate.getPageSize()!=null){
+	    		url+="&pageSize="+paperinnovate.getPageSize();
+	    	}
+	    	if(url.equals("?")){
+	    		url="";
+	    	}
+	    	return url;
+	    }
 }

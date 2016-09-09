@@ -26,36 +26,24 @@ public class LoveLifeController  extends BaseController{
 	@Resource
 	private LoveLifeService loveLifeService;
 	/**
-	 * 
-	* @Title: register 
-	* @Description: 注册信息 
-	* @param @param didicInfo
-	* @param @return    设定文件 
-	* @return CommonResponse    返回类型 
-	* @throws
+	 * 注册
+	 * FIXME 
+	 * @param 信息的JSON串
+	 * @return 注册结果
 	 */
-	@RequestMapping(value = "/origami/oriinns", method = RequestMethod.POST)
-	public CommonResponse register(@RequestBody String origamiinnoInfo){
-		return successReturn(loveLifeService.register(origamiinnoInfo));
+	@RequestMapping(value = "/oriinns", method = RequestMethod.POST)
+	public CommonResponse register(@RequestBody String Info){
+		return successReturn(loveLifeService.register(Info));
 	}
 	
+	
 	/**
-	 * 
-	* @Title: search 
-	* @Description: 根据条件查询
-	* @param @param paperinnovate
-	* @param @return    设定文件 
-	* @return CommonResponse    返回类型 
-	* @throws
+	 * 根据查询条件获取信息
+	 * @return 信息集合
+     * @throws UnsupportedEncodingException 
 	 */
-	@RequestMapping(value = "/origami/oriinns", method = RequestMethod.GET)
+	@RequestMapping(value = "/oriinns", method = RequestMethod.GET)
 	public CommonResponse search(Paperinnovate paperinnovate){
-		if (paperinnovate.getPageIndex()==null) {
-			paperinnovate.setPageIndex(1);
-		}
-		if (paperinnovate.getPageSize()==null) {
-			paperinnovate.setPageSize(10);
-		}
 		String res = loveLifeService.search(paperinnovate);
 		String count=loveLifeService.searchCount(paperinnovate);
 		PageBean<String> pagebean=new PageBean<String>();
@@ -74,45 +62,33 @@ public class LoveLifeController  extends BaseController{
 	}
 	
 	/**
-	 * 
-	* @Title: getById 
-	* @Description: 根据ID查询信息 
-	* @param @param id
-	* @param @return    设定文件 
-	* @return CommonResponse    返回类型 
-	* @throws
+	 * 根据ID获取一个信息
+	 * @param id
+	 * @return 
 	 */
-	@RequestMapping(value = "/origami/oriinns/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/oriinns/{id}", method = RequestMethod.GET)
 	public CommonResponse getById(@PathVariable String id ){
 		return successReturn(loveLifeService.getById(id));
 	}
 	
 	/**
-	 * 
-	* @Title: delete 
-	* @Description: 根据Id删除信息 
-	* @param @param id
-	* @param @return    设定文件 
-	* @return CommonResponse    返回类型 
-	* @throws
+	 * 根据ID删除一个信息
+	 * @param id
+	 * @return 
 	 */
-	@RequestMapping(value = "/origami/oriinns/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/oriinns/{id}", method = RequestMethod.DELETE)
 	public CommonResponse delete(@PathVariable String id ){
 		return successReturn(loveLifeService.delete(id));
 	}
 	
 	/**
-	 * 
-	* @Title: alter 
-	* @Description: 修改信息
-	* @param @param origamiinnoInfo
-	* @param @return    设定文件 
-	* @return CommonResponse<?>    返回类型 
-	* @throws
+	 * FIXME 修改信息 
+	 * @param Info
+	 * @return 
 	 */
-	@RequestMapping(value = "/origami/oriinns/{id}", method = RequestMethod.PUT)
-	public CommonResponse<?> alter(@RequestBody String origamiinnoInfo){
-		return successReturn(loveLifeService.alter(origamiinnoInfo));
+	@RequestMapping(value = "/oriinns/{id}", method = RequestMethod.PUT)
+	public CommonResponse<?> alter(@RequestBody String Info){
+		return successReturn(loveLifeService.alter(Info));
 	}
 		
 }

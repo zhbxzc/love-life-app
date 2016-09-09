@@ -6,17 +6,15 @@ public class Constants {
 	private static String origamiPath="love-origami-domain";
 	private static String custPath="cloud-cust-domain";
 	   //折纸信息新增
-		public static final String registerOrigami="http://"+origamiPath+"/Paperinnovatedomain/origami/oriinns";
+		public static final String registerOrigami="http://"+origamiPath+"/origami/oriinns";
 		//折纸信息删除
-		public static final String deleteOrigami="http://"+origamiPath+"/digdomain/dig/didics";
+		public static final String deleteOrigami="http://"+origamiPath+"/origami/oriinns";
 		//折纸信息查询
-		public static final String searchOrigami="http://"+origamiPath+"/digdomain/dig/didics";
+		public static final String searchOrigami="http://"+origamiPath+"/origami/oriinns";
 		//折纸信息查询
-		public static final String searchCountOrigami="http://"+origamiPath+"/digdomain/dig/didics/counts";
-		//折纸信息查询一条
-		public static final String getByIdOrigami="http://"+origamiPath+"/digdomain/dig/didics";
+		public static final String searchCountOrigami="http://"+origamiPath+"/origami/oriinns/counts";
 		//折纸信息更新
-		public static final String alterOrigami="http://"+origamiPath+"/digdomain/dig/didics";
+		public static final String alterOrigami="http://"+origamiPath+"/origami/oriinns";
 		
 		//客户信息查询
 		public static final String searchCust="http://"+custPath+"/cust/api/v1/customers";
