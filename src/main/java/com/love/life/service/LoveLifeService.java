@@ -72,7 +72,7 @@ public class LoveLifeService {
 	 * @return
 	 * 
 	 */
-	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")
+	/*@HystrixCommand(fallbackMethod = "searchhystrixMapParam")*/
 	public String search(Paperinnovate paperinnovate) {
 		String s = client.getForObject(Constants.searchOrigami+toURL(paperinnovate), String.class);
 		return  s;
@@ -128,7 +128,7 @@ public class LoveLifeService {
 	 public static String toURL(Paperinnovate paperinnovate){
 	    	String url="?";
 	    	if(paperinnovate.getTitle()!=null){
-	    		url+="&name="+paperinnovate.getTitle();
+	    		url+="&title="+paperinnovate.getTitle();
 	    	}	    
 	    	if(paperinnovate.getPageIndex()!=null){
 	    		url+="&pageIndex="+paperinnovate.getPageIndex();

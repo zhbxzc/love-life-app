@@ -8,6 +8,6 @@ var  domain = dev_menu_domain  ;
 //请求客户信息的restful地址
 var interfaces = {
 	customers:httpUrl+"custapp/customers",
-
+	oriinns:httpUrl+"origamiapp/oriinns",
 };
 

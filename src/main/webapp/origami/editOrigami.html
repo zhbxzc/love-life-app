@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body ng-controller="editOrigamiController" id="moduleId" pagename="../../origami/editOrigami">
+<div align="center">
+    <h1>折纸制作步骤</h1>
+     <form ng-submit="editOrigami()" id="editOrigami" class="editOrigami">
+     <table>
+     <tr align="left">  
+     <td>
+     <div>标题<input type="text" class="input-medium medium" ng-model="editForm.title" id="title"/></div>
+     <div>类型<select ng-model="selected" ng-options="x.id as x.name for x in types" id="typeId"></select></div>
+					<button type="submit" class="button">保存</button>
+					</td>
+     </tr>  
+
+    <tr align="center">
+       <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+    </tr>
+    </table>
+    </form>
+</div>
+<script async="async" defer="defer" src="../hapui/plugins/requireJs/require.js" data-main="../hapui/js/main.js"></script>
+</body>
+</html>

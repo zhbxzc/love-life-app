@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body ng-controller="getOrigamiController" id="moduleId" pagename="../../origami/getOrigami">
+<div align="center">
+    <h1>折纸制作步骤</h1>
+     <form id="getOrigami" class="getOrigami">
+     <table>
+     <tr align="left">  
+     <td>
+     <div><input type="hidden" class="input-medium medium" ng-model="searchForm.id"/></div>
+     <div>标题<input type="text" class="input-medium medium" ng-model="searchForm.title" disabled="disabled"/></div>
+     </td>
+         </tr> 
+         <tr>
+         <td>
+          <div>类型<input type="hidden" class="input-medium medium" ng-model="searchForm.typeId"/><input type="text" class="input-medium medium" ng-model="searchForm.typeName" disabled="disabled"/></div> 
+         </td>
+         
+         </tr>
+                  <tr>
+         <td>
+         <button type="button" class="btn btn-primary" ng-click="Edit()">编辑</button>
+					<button type="button" class="btn btn-primary" ng-click="Remove()">删除</button>
+         </td>
+         
+         </tr>
+
+  
+
+    <tr align="center">
+    <td><div id="editor"></div></td>
+      
+       <!-- <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script> -->
+    </tr>
+    </table>
+    </form>
+</div>
+<script async="async" defer="defer" src="../hapui/plugins/requireJs/require.js" data-main="../hapui/js/main.js"></script>
+</body>
+</html>
