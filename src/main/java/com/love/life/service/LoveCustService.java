@@ -72,7 +72,7 @@ public class LoveCustService {
 	 * @return
 	 * 
 	 */
-	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")
+/*	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")*/
 	public String search(Customer customer) {
 		String s = client.getForObject(Constants.searchCust+toURL(customer), String.class);
 		return  s;
@@ -83,7 +83,7 @@ public class LoveCustService {
 	 * @param 
 	 * @return
 	 */
-	@HystrixCommand(fallbackMethod = "searchhystrixMapParam")
+	/*@HystrixCommand(fallbackMethod = "searchhystrixMapParam")*/
 	public String searchCount(Customer customer) {
 		String s = client.getForObject(Constants.searchCountCust+toURL(customer), String.class);
 		return  s;
@@ -129,7 +129,13 @@ public class LoveCustService {
 	    	String url="?";
 	    	if(customer.getName()!=null){
 	    		url+="&name="+customer.getName();
-	    	}	    
+	    	}	
+	    	if(customer.getSexId()!=null){
+	    		url+="&sexId="+customer.getSexId();
+	    	}
+	    	if(customer.getIdCardNo()!=null){
+	    		url+="&idCardNo="+customer.getIdCardNo();
+	    	}
 	    	if(customer.getPageIndex()!=null){
 	    		url+="&pageIndex="+customer.getPageIndex();
 	    	}

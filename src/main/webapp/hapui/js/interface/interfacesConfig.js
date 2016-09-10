@@ -7,7 +7,7 @@ var  dev_menu_domain="http://"+host+"/" ;
 var  domain = dev_menu_domain  ;
 //请求客户信息的restful地址
 var interfaces = {
-	customers:httpUrl+"customerapp/customers",
+	customers:httpUrl+"custapp/customers",
 
 };
 

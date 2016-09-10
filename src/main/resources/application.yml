@@ -1,11 +1,11 @@
 ---
 spring:
-  ---rabbitmq:
-    host: 10.130.202.57
+  rabbitmq:
+    host: localhost
     port: 5672
-    username: hie_cloud
-    password: hie_cloud123456
-    VirtualHost: tk-hie
+    username: zhb
+    password: zhb
+    virtual-host: cloud-zhb
   ---solr:
     host: http://127.0.0.1:8080/solr
     zkHost: 127.0.0.1:8080

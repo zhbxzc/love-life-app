@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.sleuth.Sampler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -28,11 +29,11 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class LoveLifeAppApplication
 {
-	/*@Bean
+	@Bean
 	Sampler sampler()
 	{
 		return span -> true;
-	}*/
+	}
 	@Bean
 	@LoadBalanced
 	public RestTemplate restTemplate()

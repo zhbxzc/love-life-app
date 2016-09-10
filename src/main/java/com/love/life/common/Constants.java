@@ -19,7 +19,7 @@ public class Constants {
 		//客户信息查询
 		public static final String searchCust="http://"+custPath+"/cust/api/v1/customers";
 		//客户信息数量查询
-		public static final String searchCountCust="http://"+custPath+"/cust/api/v1/customers/count";
+		public static final String searchCountCust="http://"+custPath+"/cust/api/v1/customers/counts";
 		//客户信息删除
 		public static final String deleteCust="http://"+custPath+"/cust/api/v1/customers";
 		public static final String registerCust="http://"+custPath+"/cust/api/v1/customers";
