@@ -60,8 +60,8 @@ app.controller("editOrigamiController", function($scope,$http){
 			.success(function(data){
 				json=JSON.parse(data.data);
 				if(json.result){
-					alert("修改成功");
-					window.location.replace("http://"+window.location.host+"/origami/getOrigami.html?id="+getQueryString("id"));
+					alert("修改成功");window.location.replace("http://"+window.location.host+"/origami/getOrigami.html?id="+getQueryString("id"));
+					
 					//将表单数据清空
 					st={};
 				}else{
