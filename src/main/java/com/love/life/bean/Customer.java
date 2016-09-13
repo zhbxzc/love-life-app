@@ -2,6 +2,8 @@ package com.love.life.bean;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Customer extends PageBean{
     private String id;
 
@@ -14,7 +16,7 @@ public class Customer extends PageBean{
     private String des;
 
     private Integer sexId;
-
+  
     private Date birthday;
 
     private String idCardNo;

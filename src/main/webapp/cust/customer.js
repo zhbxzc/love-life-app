@@ -63,7 +63,6 @@ app.controller("customerController", function($scope,$http){
 				$scope.attributes=jsonrows;
 				$scope.dataNumber = json.count;
 				console.log($scope.dataNumber);
-				
 				$scope.numberOfPages = Math.ceil($scope.dataNumber/$scope.itemsByPage);
 				console.log($scope.numberOfPages);
 			})

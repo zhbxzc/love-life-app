@@ -20,7 +20,7 @@ app.controller("editOrigamiController", function($scope,$http){
 
 			})
 		    .error(function(){
-		    	alert("查询失败");
+		    	showTip("danger","操作失败");
 		    });
     }
 	
@@ -40,7 +40,7 @@ app.controller("editOrigamiController", function($scope,$http){
 	$scope.editOrigami=function(){
 		   var title=$("#title").val();
 		      if(title.trim()==""){
-		      	alert("标题不能为空");
+		      	showTip("warning","标题不能为空");
 		      	return;
 		      }
 		 var typeId=$("#typeId").val();
@@ -60,16 +60,17 @@ app.controller("editOrigamiController", function($scope,$http){
 			.success(function(data){
 				json=JSON.parse(data.data);
 				if(json.result){
-					alert("修改成功");window.location.replace("http://"+window.location.host+"/origami/getOrigami.html?id="+getQueryString("id"));
+					showTip("success","操作成功");
+					window.location.replace("http://"+window.location.host+"/origami/getOrigami.html?id="+getQueryString("id"));
 					
 					//将表单数据清空
 					st={};
 				}else{
-					alert("修改失败");
+					showTip("danger","操作失败");
 				}
 		    })
 		    .error(function(){
-		    	alert("修改失败");
+		    	showTip("danger","操作失败");
 		    });
 	}
 	

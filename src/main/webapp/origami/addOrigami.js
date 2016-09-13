@@ -26,16 +26,16 @@ app.controller("addOrigamiController", function($scope,$http){
 			.success(function(data){
 				json=JSON.parse(data.data);
 				if(json.result){
-					alert("新增成功");
+					showTip("success","新增成功");
 					window.location.replace("http://"+window.location.host+"/origami/Origami.html");
 					//将表单数据清空
 					st={};
 				}else{
-					alert("新增失败");
+					showTip("danger","操作失败");
 				}
 		    })
 		    .error(function(){
-		    	alert("新增失败");
+		    	showTip("danger","操作失败");
 		    });
 	}
 	
