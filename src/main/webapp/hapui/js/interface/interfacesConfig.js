@@ -9,5 +9,6 @@ var  domain = dev_menu_domain  ;
 var interfaces = {
 	customers:httpUrl+"custapp/customers",
 	oriinns:httpUrl+"origamiapp/oriinns",
+	pyjm:httpUrl+"commapp/pyjms"
 };
 

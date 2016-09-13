@@ -133,6 +133,30 @@ app.controller("customerController", function($scope,$http){
 		    });
     };
     
- 
+    /*  新增模态框 汉字转拼音码和五笔码   --开始--	*/
+    $("#add_name").blur(function (){
+    	$http({
+			contentType:'application/text;charset=UTF-8',
+			method:"get",
+			url:interfaces.pyjm+'/'+$scope.addForm.name
+		})
+		.success(function(data){
+			json = JSON.parse(data.data);
+			$scope.addForm.spellNo = json.pyjc;
+			$scope.addForm.wubiNo = json.wubi;
+		})
+    })
+      $("#alter_name").blur(function (){
+    	$http({
+			contentType:'application/text;charset=UTF-8',
+			method:"get",
+			url:interfaces.pyjm+'/'+$scope.alterForm.name
+		})
+		.success(function(data){
+			json = JSON.parse(data.data);
+			$scope.alterForm.spellNo = json.pyjc;
+			$scope.alterForm.wubiNo = json.wubi;
+		})
+    })
 })
 
