@@ -35,6 +35,7 @@ public class LoveCustController  extends BaseController{
 	 */
 	@RequestMapping(value = "/customers", method = RequestMethod.POST)
 	public CommonResponse register(@RequestBody String Info){
+	
 		return successReturn(loveCustService.register(Info));
 	}
 	
@@ -54,7 +55,6 @@ public class LoveCustController  extends BaseController{
 		}else{
 			pagebean.setCount(0);
 		}
-		
 		pagebean.setRows(res);
 		if (res==null) {
 			return errorReturn(ConsantsCodeAndMessage.ALIAS_SELECT_EXCEPTION_CODE, "查询失败了");

@@ -56,6 +56,11 @@
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-hystrix</artifactId>
 	</dependency>
+	<dependency>
+			<groupId>com.taikang.healthcare</groupId>
+			<artifactId>tkh-sdk</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	<!-- ribbon依赖 -->
 	<dependency>
 		<groupId>org.springframework.cloud</groupId>
