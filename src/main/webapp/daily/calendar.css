@@ -1,0 +1,286 @@
+/*=======================领导日程样式========================*/
+.schedule{
+  padding: 15px;
+  min-width: 1050px;
+}
+.schedule .title{
+  background-position: 0px 55px;
+  background-repeat: repeat-x;
+  font-size: 22px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+}
+.schedule .tool{
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+.schedule .tool .posi {
+  float: left;
+}
+.schedule .tool li{
+  float: left;
+}
+.schedule .tool .own, .schedule .tool .prev, .schedule .tool .next{
+  background-position: 0px -91111px;
+  background-repeat: repeat-x;
+  background-color: #317caf;
+  width: 70px;
+  height: 32px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 10px;
+}
+.schedule .tool .prev, .schedule .tool .next{
+  width: 80px;
+  margin: 0px;
+}
+.schedule .tool .own:hover, .schedule .tool .prev:hover, .schedule .tool .next:hover{
+  background-position: 0px -167px;
+  background-repeat: repeat-x;
+}
+.schedule .tool a{
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+}
+.schedule .tool i{
+  display: inline-block;
+  height: 13px;
+  width: 13px;
+  vertical-align: -1px;
+}
+.schedule .tool .prev i{
+  background-position: 2px -13px;
+}
+.schedule .tool .own i{
+  background-position: -26px -15px;
+  vertical-align: -1px;
+  margin-right: 4px;
+}
+.schedule .tool .next i{
+  background-position: -53px -13px;
+}
+.schedule .tool .choice{
+  float: right;
+  background-position: 0px -129111px;
+  background-repeat: repeat-x;
+  background-color: #e76049;
+  width: 220px;
+  height: 32px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.schedule .tool .choice .down_arrow{
+  background-position: 0px -205px;
+  display: inline-block;
+  width: 10px;
+  height: 7px;
+  vertical-align: middle;
+  float: right;
+  margin-top: 13px;
+  margin-right: 10px;
+}
+.schedule .tool .choice input{
+  border: none;
+  background: none;
+  color: #fff;
+  display: inline-block;
+  width: 168px;
+  margin-top: -5px;
+}
+.schedule .tool .export{
+	background-position: 0px -91111px;
+	background-repeat: repeat-x;
+	background-color: #317caf;
+	height: 32px;
+	border-radius: 5px;
+	text-align: center;
+	border: none;
+	color: white;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: 10px;
+}
+.schedule .tool .export:hover{
+	background-color: #41baf2;
+}
+.schedule table {
+  border-collapse:collapse;
+}
+.schedule table th, .schedule table td{
+  border: 1px solid #dddddd;
+  line-height: 32px;
+  padding:3px 10px;
+}
+.schedule table th{
+  background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#f7f7f7), to(#efefef));
+  background: -moz-linear-gradient(top, #f7f7f7, #efefef 100%);
+  text-align: center;
+}
+.schedule table .info{
+  line-height: 22px;
+  margin-bottom: 2px;
+}
+.schedule table .noweek {
+  background-color: #f8f8f8;
+}
+.schedule table .remark{
+  color: #b1b1b1;
+  margin-left:5px;
+}
+.schedule table td .ng, .schedule table td .dfb, .schedule table td .yfb{
+  border-radius: 5px;
+  padding: 3px 8px;
+  margin: 5px 0;
+}
+.schedule table td .ng{
+  background-color: #93cce4;
+}
+.schedule table td .dfb{
+  background-color: #f7c3a0;
+}
+.schedule table td .yfb{
+  background-color: #cddf9e;
+}
+.schedule table i{
+  background-position: 0px -249px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  vertical-align: middle;
+}
+.schedule table i.add{
+  background-image: url(images/portal.png);
+  background-position: 0px -101px;
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.schedule .pop{
+  background-color: #e76049;
+  border-radius: 5px;
+  width: 300px;
+  padding: 15px;
+  position: relative;
+}
+.schedule .pop .arrow, .schedule .pop .arrow_r{
+  background-position: 0px -221px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  position: absolute;
+  margin-left: -23px;
+}
+.schedule .pop .arrow_r{
+  background-position: -39px -221px;
+  right: -10px;
+}
+.schedule .pop .titlem{
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+.schedule .pop .titlem > .fun{
+  float: right;
+}
+.schedule .pop .titlem i{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.schedule .pop .titlem .edit{
+  background-position: -37px -265px;
+}
+.schedule .pop .titlem .del{
+  background-position: -0px -265px;
+}
+.schedule .pop .titlem .submit{
+  background-position: -74px -265px;
+}
+.schedule .pop .detailed{
+  color: #fae5e3;
+}
+.schedule .tool .disabled {
+  background-image: none;
+  background-color: #dddddd;
+  width: 80px;
+  height: 32px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: default;
+}
+.schedule .tool .disabled i{
+  width: 13px;
+  height: 13px;
+}
+.schedule .tool .disabled:hover{
+  background-color: #dddddd;
+}
+.schedule .tool .curWeek {
+  background-image: none;
+  background-color: #F1A06B;
+  width: 70px;
+  height: 32px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.schedule .tool .curWeek:hover{
+  background-color: #41baf2;
+}
+.schedule .tool .curChange {
+  background-image: none;
+  background-color: #F1A06B;
+  width: 80px;
+  height: 32px;
+  line-height: 30px;
+  border-radius: 5px;
+  text-align: center;
+}
+.schedule .tool .curChange i{
+  width: 13px;
+  height: 13px;
+}
+.schedule .tool .curChange:hover {
+  background-color: #41baf2;
+}
+/*=======================领导日程========================*/
+.schedule .legend {
+  margin: 10px 0;
+}
+.schedule .legend i{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 3px;
+  background-position: 11110px -10111px;
+}
+.schedule .legend .yfb {
+  background-color: #cddf9e;
+}
+.schedule .legend .dfb {
+  background-color: #f7c3a0;
+}
+.schedule .legend .ng {
+  background-color: #93cce4;
+}
+.schedule .legend span{
+  margin-right: 15px;
+}
